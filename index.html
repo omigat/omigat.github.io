@@ -7,6 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3023693801300777"
+     crossorigin="anonymous"></script>
     <style>
         :root {
             --kindle-bg: #f5f5f5;
@@ -38,10 +40,21 @@
             justify-content: center;
         }
         
+        .page-layout {
+            display: flex;
+            gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            align-items: flex-start;
+        }
+        
         .container {
+            flex: 1;
             width: 100%;
             max-width: 800px;
-            margin: 2rem auto;
+            margin: 0;
             padding: 2rem;
             background-color: var(--kindle-paper);
             border-radius: 8px;
@@ -49,6 +62,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+        
+        .ad-container {
+            width: 300px;
+            position: sticky;
+            top: 2rem;
         }
         
         h1 {
@@ -168,10 +187,24 @@
             transform: translateY(1px);
         }
         
+        @media (max-width: 1024px) {
+            .page-layout {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .ad-container {
+                width: 100%;
+                max-width: 800px;
+                position: static;
+                margin-top: 2rem;
+            }
+        }
+        
         @media (max-width: 600px) {
             .container {
                 padding: 1.5rem;
-                margin: 1rem;
+                margin: 0;
             }
             
             .controls {
@@ -183,26 +216,46 @@
                 width: 100%;
                 max-width: 250px;
             }
+            
+            .page-layout {
+                padding: 1rem;
+                gap: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Speech to Text</h1>
-        
-        <div class="controls">
-            <button id="recordButton">Start Recording</button>
-            <label for="fileInput" class="file-input-label">Upload Audio</label>
-            <input type="file" id="fileInput" accept="audio/*">
+    <div class="page-layout">
+        <div class="container">
+            <h1>Speech to Text</h1>
+            
+            <div class="controls">
+                <button id="recordButton">Start Recording</button>
+                <label for="fileInput" class="file-input-label">Upload Audio</label>
+                <input type="file" id="fileInput" accept="audio/*">
+            </div>
+            
+            <div id="status">Ready to record or upload</div>
+            
+            <div class="transcription-container">
+                <div class="transcription-header">
+                    <button id="copyButton" class="hidden">Copy Text</button>
+                </div>
+                <div id="transcription"></div>
+            </div>
         </div>
         
-        <div id="status">Ready to record or upload</div>
-        
-        <div class="transcription-container">
-            <div class="transcription-header">
-                <button id="copyButton" class="hidden">Copy Text</button>
-            </div>
-            <div id="transcription"></div>
+        <div class="ad-container">
+            <!-- Right side -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-3023693801300777"
+                 data-ad-slot="7259086064"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
         </div>
     </div>
     <script src="dist/script.js"></script>
