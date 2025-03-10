@@ -1,0 +1,14 @@
+{
+  "name": "transcription-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for audio transcription service",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "serve": "http-server -p 8080"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "typescript": "^5.3.3"
+  }
+} 

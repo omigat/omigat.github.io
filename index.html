@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech to Text</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --kindle-bg: #f5f5f5;
+            --kindle-text: #333333;
+            --kindle-border: #d9d9d9;
+            --kindle-button: #5e5e5e;
+            --kindle-button-hover: #444444;
+            --kindle-paper: #fff;
+            --kindle-shadow: rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--kindle-bg);
+            color: var(--kindle-text);
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: var(--kindle-paper);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px var(--kindle-shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        h1 {
+            font-family: 'Literata', Georgia, serif;
+            font-weight: 500;
+            color: var(--kindle-text);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 2rem;
+        }
+        
+        .controls {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        #status {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .transcription-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .transcription-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            padding: 0 0.5rem;
+        }
+        
+        .transcription-header h3 {
+            font-family: 'Literata', Georgia, serif;
+            font-weight: 500;
+            font-size: 1.25rem;
+        }
+        
+        #transcription {
+            width: 100%;
+            min-height: 300px;
+            border: 1px solid var(--kindle-border);
+            padding: 1.5rem;
+            border-radius: 4px;
+            background-color: var(--kindle-paper);
+            font-family: 'Literata', Georgia, serif;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: var(--kindle-text);
+            box-shadow: inset 0 1px 3px var(--kindle-shadow);
+        }
+        
+        button {
+            padding: 0.75rem 1.25rem;
+            border: none;
+            border-radius: 4px;
+            background-color: var(--kindle-button);
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            font-family: 'Source Sans 3', sans-serif;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        
+        button:hover {
+            background-color: var(--kindle-button-hover);
+        }
+        
+        button:active {
+            transform: translateY(1px);
+        }
+        
+        #copyButton {
+            display: block;
+            margin-left: 10px;
+        }
+        
+        #copyButton.hidden {
+            display: none;
+        }
+        
+        #fileInput {
+            display: none;
+        }
+        
+        .file-input-label {
+            padding: 0.75rem 1.25rem;
+            border: none;
+            border-radius: 4px;
+            background-color: var(--kindle-button);
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            font-family: 'Source Sans 3', sans-serif;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+        
+        .file-input-label:hover {
+            background-color: var(--kindle-button-hover);
+        }
+        
+        .file-input-label:active {
+            transform: translateY(1px);
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            button, .file-input-label {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Speech to Text</h1>
+        
+        <div class="controls">
+            <button id="recordButton">Start Recording</button>
+            <label for="fileInput" class="file-input-label">Upload Audio</label>
+            <input type="file" id="fileInput" accept="audio/*">
+        </div>
+        
+        <div id="status">Ready to record or upload</div>
+        
+        <div class="transcription-container">
+            <div class="transcription-header">
+                <button id="copyButton" class="hidden">Copy Text</button>
+            </div>
+            <div id="transcription"></div>
+        </div>
+    </div>
+    <script src="dist/script.js"></script>
+</body>
+</html> 
