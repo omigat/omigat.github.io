@@ -1,1 +1,0 @@
-# omigat.github.io
