@@ -1,0 +1,34 @@
+# ---- Node/Package Manager ----
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+pnpm-lock.yaml
+
+# ---- Build Artifacts ----
+dist/
+build/
+out/
+
+# ---- TypeScript ----
+*.tsbuildinfo
+
+# ---- Environment Variables ----
+.env
+.env.* 
+
+# ---- Logs & Reports ----
+logs/
+*.log
+coverage/
+coverage.json
+
+# ---- Mac/IDE Files ----
+.DS_Store
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
