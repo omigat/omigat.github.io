@@ -74,13 +74,13 @@ async function sendAudioToServer(audioData) {
     const formData = new FormData();
     formData.append('audio', audioData);
     try {
-        const response = await fetch('http://localhost:3000/api/transcribe', {
+        const response = await fetch('https://vercel-transcription.vercel.app/api/transcribe', {
             method: 'POST',
             body: formData,
         });
         const data = await response.json();
         if (response.ok) {
-            transcriptionElement.textContent = data.text;
+            transcriptionElement.textContent = data.transcript;
             statusElement.textContent = 'Transcription complete';
             copyButton.classList.remove('hidden'); // Show copy button when there's text
         }
