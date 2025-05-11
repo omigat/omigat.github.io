@@ -72,7 +72,7 @@ fileInput.addEventListener('change', async (event) => {
 // Send audio to backend
 async function sendAudioToServer(audioData) {
     const formData = new FormData();
-    formData.append('audio', audioData);
+    formData.append('file', audioData);
     try {
         const response = await fetch('https://vercel-transcription.vercel.app/api/transcribe', {
             method: 'POST',
