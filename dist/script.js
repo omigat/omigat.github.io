@@ -78,11 +78,15 @@ async function sendAudioToServer(audioData) {
             method: 'POST',
             body: formData,
         });
-        const data = await response.json();
+        // Log the raw response for debugging
+        const rawResponse = await response.text();
+        console.log('Raw response:', rawResponse);
+        // Parse the response as JSON
+        const data = JSON.parse(rawResponse);
         if (response.ok) {
             transcriptionElement.textContent = data.transcript;
             statusElement.textContent = 'Transcription complete';
-            copyButton.classList.remove('hidden'); // Show copy button when there's text
+            copyButton.classList.remove('hidden');
         }
         else {
             throw new Error(data.error || 'Transcription failed');
@@ -97,7 +101,7 @@ async function sendAudioToServer(audioData) {
             statusElement.textContent = 'An unknown error occurred';
         }
         transcriptionElement.textContent = 'Failed to get transcription';
-        copyButton.classList.add('hidden'); // Hide copy button on error
+        copyButton.classList.add('hidden');
     }
 }
 //# sourceMappingURL=script.js.map
